@@ -28,6 +28,10 @@
 #define AS_CLOSETAB LCTL(KC_F4)
 #define AS_CLOSETOOLWINDOW LCTL(LSFT(KC_F4))
 
+#define TRM_VSL LCTL(LSFT(KC_SPACE))
+#define TRM_CPY LCTL(LSFT(KC_C))
+#define TRM_PST LCTL(LSFT(KC_V))
+
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
 
@@ -69,15 +73,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   [KEYNAV] = LAYOUT(
-    KC_ESC,             AS_GO_IMPLEMENTATION,  RCTL(KC_Z),      RCTL(KC_S),       MEH(KC_A),                           MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
-    AS_BACK,            AS_SYMBOL,             RSFT(KC_TAB),    KC_TAB,           SHELL_DEL_WORD,                      LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT),
+    KC_ESC,             RCTL(KC_Z),            RCTL(KC_W),      RCTL(KC_S),       MEH(KC_A),                           MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
+    TRM_VSL,            TRM_CPY,             TRM_PST,    KC_TAB,           SHELL_DEL_WORD,                      LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT),
     AS_FINDUSAGE,       AS_CLASS,              AS_TABLEFT,      AS_TABRIGHT,      AS_CLOSETAB,                         _______,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
     AS_CLOSETOOLWINDOW, AS_GO_DECLARATION,     _______,         _______,          _______,          _______, KC_ENTER, KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
   ),
 
     /*
     ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
-    │ESC  │ ?   │ctl-Z│ctl-S│MEH-a│              │MEH-b│HOME │  ↑  │END  │PG-↑ │
+    │ESC  │ctl-w│ctl-Z│ctl-S│MEH-a│              │MEH-b│HOME │  ↑  │END  │PG-↑ │
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
     │ ?   │ ?   │s-TAB│TAB  │ ?   │              │ctl ←│  ←  │  ↓  │  →  │ctl →│
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
@@ -108,8 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [BROWSER_CONTROL] = LAYOUT(
     MEH(KC_0), KC_BTN3,   KC_MS_U,   KC_BTN1,   KC_BTN2,                      KC_UP,      KC_PGUP,            KC_PGDN,      KC_MS_WH_UP,   MEH(KC_9),
-    MEH(KC_1), KC_MS_L,   KC_MS_D,   KC_MS_R,   MEH(KC_6),                    KC_DOWN,    RSFT(RCTL(KC_TAB)), RCTL(KC_TAB), KC_MS_WH_DOWN, LALT(KC_LEFT),
-    MEH(KC_2), MEH(KC_3), MEH(KC_4), MEH(KC_5), MEH(KC_7),                    MEH(KC_8),  RCTL(KC_1),         RCTL(KC_9),   KC_F6,         KC_F5,
+    LALT(KC_1), KC_MS_L,   KC_MS_D,   KC_MS_R,   LALT(KC_6),                    KC_DOWN,    RSFT(RCTL(KC_TAB)), RCTL(KC_TAB), KC_MS_WH_DOWN, LALT(KC_LEFT),
+    LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5), LALT(KC_7),                    MEH(KC_8),  RCTL(KC_1),         RCTL(KC_9),   KC_F6,         KC_F5,
     _______,   _______,   _______,   _______,   _______, _______, RCTL(KC_W), RCTL(KC_T), RSFT(RCTL(KC_TAB)), _______,      _______,       _______
   ),
 
@@ -157,8 +161,9 @@ void matrix_scan_user(void) {
       // Anything you can do in a macro.
       SEND_STRING("QMK is awesome.");
     }
-    SEQ_TWO_KEYS(KC_D, KC_D) {
-      SEND_STRING(SS_LCTRL("n")SS_LCTRL("c"));
+    SEQ_ONE_KEY(KC_H) {
+      //SEND_STRING(SS_LCTRL("n")SS_LCTRL("c"));
+      SEND_STRING("~/");
     }
     SEQ_ONE_KEY(KC_S) {
       SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER));
