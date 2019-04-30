@@ -1,8 +1,8 @@
 
 #include QMK_KEYBOARD_H
 
-#define LEADER_TIMEOUT 300
 #define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 250
 
 // layers
 #define BASE      0
@@ -49,10 +49,10 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT(
-    KC_LEAD,      KC_COMMA,      KC_DOT,     KC_P,                KC_G,                                 KC_J,       KC_L,      KC_U,    KC_Y,          KC_F,
+    KC_Q,          KC_F,          KC_W,       KC_P,                KC_G,                                 KC_J,       KC_L,      KC_U,    KC_Y,          KC_SCLN,
     KC_A,          KC_R,          KC_S,       KC_T,                KC_D,                                 KC_H,       KC_N,      KC_E,    KC_I,          KC_O,
-    KC_Z,    	   KC_X,          KC_C,       KC_V,                KC_B,                                 KC_K,       KC_M,      KC_Q,    KC_W,          KC_COLN,
-    OSM(MOD_LSFT), OSM(MOD_LCTL), MO(KEYSEL), MO(BROWSER_CONTROL), MO(COMBINED), MO(KEYNAV), ALTENT,   KC_SPACE,  KC_BSPC, RCTL(KC_BSPC), KC_CAPSLOCK, OSM(MOD_LSFT)
+    KC_Z,    	   KC_X,          KC_C,       KC_V,                KC_B,                                 KC_K,       KC_M,      KC_COMMA,KC_DOT,        KC_SLASH,
+    OSM(MOD_LSFT), OSM(MOD_LCTL), MO(KEYSEL), MO(BROWSER_CONTROL), MO(COMBINED), MO(KEYNAV), ALTENT,   KC_SPACE,  KC_BSPC, RCTL(KC_BSPC), KC_LEAD, OSM(MOD_LSFT)
   ),
 
     /*
@@ -74,7 +74,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     AS_FINDUSAGE,       AS_CLASS,              AS_TABLEFT,      AS_TABRIGHT,      AS_CLOSETAB,                         _______,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
     AS_CLOSETOOLWINDOW, AS_GO_DECLARATION,     _______,         _______,          _______,          _______, KC_ENTER, KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
   ),
-  
 
     /*
     ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
@@ -85,25 +84,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     │ ?   │ ?   │ ?   │ ?   │ ?   ├────┐    ┌────┤_____│ctl-C│ctl-X│ctl-V│PG-↓ │
     ├─────┼─────┼─────┼─────┼─────┤    │    │    ├─────┼─────┼─────┼─────┼─────┤
     │ ?   │ ?   │_____│_____│_____│TRNS│    │ENT │SPACE│B-SPC│c-B-S│DEL  │c-del│
-    └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
-  */
-
-  [KEYSEL] = LAYOUT(
-    MEH(KC_G), MEH(KC_H),MEH(KC_I), MEH(KC_J), MEH(KC_K),                    _______,             RSFT(KC_HOME), RSFT(KC_UP),   RSFT(KC_END),   RSFT(KC_PGUP),
-    MEH(KC_L), MEH(KC_M),MEH(KC_N), MEH(KC_O), MEH(KC_P),                    RSFT(RCTL(KC_LEFT)), RSFT(KC_LEFT), RSFT(KC_DOWN), RSFT(KC_RIGHT), RSFT(RCTL(KC_RIGHT)),
-    MEH(KC_Q), MEH(KC_R),MEH(KC_S), MEH(KC_T), MEH(KC_U),                    _______,             RCTL(KC_C),    RCTL(KC_X),    RCTL(KC_V),     RSFT(KC_PGDN),
-    RESET,     _______,  _______,   _______,   _______,   _______, KC_ENTER, KC_SPACE,            KC_BSPC,       RCTL(KC_BSPC), KC_DELETE,      LCTL(KC_DELETE)
-  ),
-
-    /*
-    ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
-    │MEH-g│MEH-h│MEH-i│MEH-j│MEH-k│              │_____│s-HME│ s-↑ │ END │s-PG↑│
-    ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │MEH-l│MEH-m│MEH-n│MEH-o│MEH-p│              │s-c ←│ s-← │ s-↓ │ s-→ │s-c →│
-    ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │MEH-q│MEH-r│MEH-s│MEH-t│MEH-u├────┐    ┌────┤_____│ctl-C│ctl-X│ctl-V│s-PG↓│
-    ├─────┼─────┼─────┼─────┼─────┤    │    │    ├─────┼─────┼─────┼─────┼─────┤
-    │RESET│_____│_____│_____│_____│TRNS│    │ENT │SPACE│B-SPC│c-B-S│ DEL │c-del│
     └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
   */
 
@@ -132,7 +112,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     MEH(KC_2), MEH(KC_3), MEH(KC_4), MEH(KC_5), MEH(KC_7),                    MEH(KC_8),  RCTL(KC_1),         RCTL(KC_9),   KC_F6,         KC_F5,
     _______,   _______,   _______,   _______,   _______, _______, RCTL(KC_W), RCTL(KC_T), RSFT(RCTL(KC_TAB)), _______,      _______,       _______
   ),
-};
 
     /*
     ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
@@ -146,6 +125,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
   */
 
+  [KEYSEL] = LAYOUT(
+    MEH(KC_G), MEH(KC_H),MEH(KC_I), MEH(KC_J), MEH(KC_K),                    _______,             RSFT(KC_HOME), RSFT(KC_UP),   RSFT(KC_END),   RSFT(KC_PGUP),
+    MEH(KC_L), MEH(KC_M),MEH(KC_N), MEH(KC_O), MEH(KC_P),                    RSFT(RCTL(KC_LEFT)), RSFT(KC_LEFT), RSFT(KC_DOWN), RSFT(KC_RIGHT), RSFT(RCTL(KC_RIGHT)),
+    MEH(KC_Q), MEH(KC_R),MEH(KC_S), MEH(KC_T), MEH(KC_U),                    _______,             RCTL(KC_C),    RCTL(KC_X),    RCTL(KC_V),     RSFT(KC_PGDN),
+    RESET,     _______,  _______,   _______,   _______,   _______, KC_ENTER, KC_SPACE,            KC_BSPC,       RCTL(KC_BSPC), KC_DELETE,      LCTL(KC_DELETE)
+  ),
+
+    /*
+    ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
+    │MEH-g│MEH-h│MEH-i│MEH-j│MEH-k│              │_____│s-HME│ s-↑ │ END │s-PG↑│
+    ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
+    │MEH-l│MEH-m│MEH-n│MEH-o│MEH-p│              │s-c ←│ s-← │ s-↓ │ s-→ │s-c →│
+    ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
+    │MEH-q│MEH-r│MEH-s│MEH-t│MEH-u├────┐    ┌────┤_____│ctl-C│ctl-X│ctl-V│s-PG↓│
+    ├─────┼─────┼─────┼─────┼─────┤    │    │    ├─────┼─────┼─────┼─────┼─────┤
+    │RESET│_____│_____│_____│_____│TRNS│    │ENT │SPACE│B-SPC│c-B-S│ DEL │c-del│
+    └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
+  */
+};
+
+
 LEADER_EXTERNS();
 
 void matrix_scan_user(void) {
@@ -158,7 +158,7 @@ void matrix_scan_user(void) {
       SEND_STRING("QMK is awesome.");
     }
     SEQ_TWO_KEYS(KC_D, KC_D) {
-      SEND_STRING(SS_LCTRL("a")SS_LCTRL("c"));
+      SEND_STRING(SS_LCTRL("n")SS_LCTRL("c"));
     }
     SEQ_ONE_KEY(KC_S) {
       SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER));
