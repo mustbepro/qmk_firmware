@@ -21,6 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 // mouse speed
+//
+// 
+//
+#define LEADER_TIMEOUT 300
+#define LEADER_PER_KEY_TIMING
+
 
 #define MOUSEKEY_INTERVAL       15
 #define MOUSEKEY_DELAY          100
