@@ -1,7 +1,5 @@
-
 #include QMK_KEYBOARD_H
 
-#define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 250
 
 // layers
@@ -28,9 +26,16 @@
 #define AS_CLOSETAB LCTL(KC_F4)
 #define AS_CLOSETOOLWINDOW LCTL(LSFT(KC_F4))
 
+//terminal - termite
 #define TRM_VSL LCTL(LSFT(KC_SPACE))
 #define TRM_CPY LCTL(LSFT(KC_C))
 #define TRM_PST LCTL(LSFT(KC_V))
+
+//i3
+#define I3_KILL LALT(LSFT(KC_Q))
+
+//shortcuts
+//#define SC_CBRK KC_LCBR(KC_LCBR(KC_LEFT))
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
@@ -56,38 +61,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,          KC_F,          KC_W,       KC_P,                KC_G,                                 KC_J,       KC_L,      KC_U,    KC_Y,          KC_SCLN,
     KC_A,          KC_R,          KC_S,       KC_T,                KC_D,                                 KC_H,       KC_N,      KC_E,    KC_I,          KC_O,
     KC_Z,    	   KC_X,          KC_C,       KC_V,                KC_B,                                 KC_K,       KC_M,      KC_COMMA,KC_DOT,        KC_SLASH,
-    OSM(MOD_LSFT), OSM(MOD_LCTL), MO(KEYSEL), MO(BROWSER_CONTROL), MO(COMBINED), MO(KEYNAV), ALTENT,   KC_SPACE,  KC_BSPC, RCTL(KC_BSPC), KC_LEAD, OSM(MOD_LSFT)
+    OSM(MOD_LSFT), OSM(MOD_LCTL), MO(KEYSEL), MO(BROWSER_CONTROL), MO(COMBINED), MO(KEYNAV), ALTENT,   KC_SPACE,  KC_BSPC, KC_LEAD, KC_CAPS, OSM(MOD_LSFT)
   ),
 
     /*
     ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
-    │ "   │ <   │ >   │ P   │ G   │              │ J   │ L   │ U   │ Y   │ F   │
+    │ q   │ f   │ w   │ P   │ G   │              │ J   │ L   │ U   │ Y   │ ;   │
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
     │ A   │ R   │ S   │ T   │ D   │              │ H   │ N   │ E   │ I   │ O   │
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │ Z   │ X   │ C   │ V   │ B   ├────┐    ┌────┤ K   │ M   │ Q   │ W   │ ;   │
+    │ Z   │ X   │ C   │ V   │ B   ├────┐    ┌────┤ K   │ M   │ ,   │ .   │ /   │
     ├─────┼─────┼─────┼─────┼─────┤    │    │ALT/├─────┼─────┼─────┼─────┼─────┤
-    │SHIFT│CTRL │KYSEL│BRO_C│COMBI│KEYN│    │ENT │SPACE│B-SPC│c-B-S│CAPS │SHIFT│
+    │SHIFT│CTRL │KYSEL│BRO_C│COMBI│KEYN│    │ENT │SPACE│B-SPC│LEAD │CAPS │SHIFT│
     └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
   */
 
 
   [KEYNAV] = LAYOUT(
-    KC_ESC,             RCTL(KC_Z),            RCTL(KC_W),      RCTL(KC_S),       MEH(KC_A),                           MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
-    TRM_VSL,            TRM_CPY,             TRM_PST,    KC_TAB,           SHELL_DEL_WORD,                      LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT),
-    AS_FINDUSAGE,       AS_CLASS,              AS_TABLEFT,      AS_TABRIGHT,      AS_CLOSETAB,                         _______,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
-    AS_CLOSETOOLWINDOW, AS_GO_DECLARATION,     _______,         _______,          _______,          _______, KC_ENTER, KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
+    KC_ESC,             RCTL(KC_Z),            RCTL(KC_W),      TRM_PST,       MEH(KC_A),                           MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
+    TRM_VSL,            RCTL(KC_R),            RCTL(KC_S),      KC_TAB,        RCTL(KC_N),                      LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT), 
+    KC_ESC,       AS_CLASS,              AS_TABLEFT,      AS_TABRIGHT,   AS_CLOSETAB,                         _______,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
+    I3_KILL,            AS_GO_DECLARATION,     _______,         _______,       _______,          _______, KC_ENTER, KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
   ),
 
     /*
     ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
-    │ESC  │ctl-w│ctl-Z│ctl-S│MEH-a│              │MEH-b│HOME │  ↑  │END  │PG-↑ │
+    │ESC  │ctl-Z│ctl-W│TRM_P│MEH-a│              │MEH-b│HOME │  ↑  │END  │PG-↑ │
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │ ?   │ ?   │s-TAB│TAB  │ ?   │              │ctl ←│  ←  │  ↓  │  →  │ctl →│
+    │TRM_V│ctl-R│ctl-S│TAB  │ctl-N│              │ctl ←│  ←  │  ↓  │  →  │ctl →│
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
     │ ?   │ ?   │ ?   │ ?   │ ?   ├────┐    ┌────┤_____│ctl-C│ctl-X│ctl-V│PG-↓ │
     ├─────┼─────┼─────┼─────┼─────┤    │    │    ├─────┼─────┼─────┼─────┼─────┤
-    │ ?   │ ?   │_____│_____│_____│TRNS│    │ENT │SPACE│B-SPC│c-B-S│DEL  │c-del│
+    │i3kil│ ?   │_____│_____│_____│TRNS│    │ENT │SPACE│B-SPC│c-B-S│DEL  │c-del│
     └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
   */
 
@@ -121,9 +126,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
     │MEH-0│M-BTN│ms-up│BTN_l│BTN_r│              │up   │pg-up│pg-dn│m-w-u│MEH-9│
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │MEH-1│ms-l │ms-dn│ms-r │MEH-6│              │down │s-c-T│c-tab│m-w-d│a-lft│
+    │alt-1│ms-l │ms-dn│ms-r │alt-6│              │down │s-c-T│c-tab│m-w-d│a-lft│
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │MEH-2│MEH-3│MEH-4│MEH-5│MEH-7├────┐    ┌────┤MEH-8│ctl-1│ctl-9│F6   │F5   │
+    │alt-2│alt-3│alt-4│alt-5│alt-7├────┐    ┌────┤MEH-8│ctl-1│ctl-9│F6   │F5   │
     ├─────┼─────┼─────┼─────┼─────┤    │    │    ├─────┼─────┼─────┼─────┼─────┤
     │_____│_____│_____│_____│_____│TRNS│    │c-w │ctl-t│s-c-T│_____│_____│_____│
     └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
@@ -160,6 +165,17 @@ void matrix_scan_user(void) {
     SEQ_ONE_KEY(KC_F) {
       // Anything you can do in a macro.
       SEND_STRING("QMK is awesome.");
+    }
+    SEQ_ONE_KEY(KC_B) {
+      SEND_STRING("[]");
+      tap_code(KC_LEFT);
+    }
+     SEQ_TWO_KEYS(KC_B, KC_B) {
+      SEND_STRING("{}");
+      tap_code(KC_LEFT);
+    }
+   SEQ_ONE_KEY(KC_SCLN) { // Anything you can do in a macro.
+      SEND_STRING(": >");
     }
     SEQ_ONE_KEY(KC_H) {
       //SEND_STRING(SS_LCTRL("n")SS_LCTRL("c"));
