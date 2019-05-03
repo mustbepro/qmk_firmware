@@ -78,19 +78,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   [KEYNAV] = LAYOUT(
-    KC_ESC,             RCTL(KC_Z),            RCTL(KC_W),      TRM_PST,       MEH(KC_A),                           MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
-    TRM_VSL,            RCTL(KC_R),            RCTL(KC_S),      KC_TAB,        RCTL(KC_N),                      LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT), 
-    KC_ESC,       AS_CLASS,              AS_TABLEFT,      AS_TABRIGHT,   AS_CLOSETAB,                         _______,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
-    I3_KILL,            AS_GO_DECLARATION,     _______,         _______,       _______,          _______, KC_ENTER, KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
+    KC_ESC,       RCTL(KC_Z),            RCTL(KC_W),      TRM_PST,   _______,                              MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
+    LCTL(KC_A),   RCTL(KC_R),            RCTL(KC_S),      KC_TAB,    RCTL(KC_N),                           LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT), 
+    KC_ESC,       AS_CLASS,              AS_TABLEFT,      TRM_VSL,   AS_CLOSETAB,                          _______,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
+    I3_KILL,      AS_GO_DECLARATION,     _______,         _______,   _______,         _______, KC_ENTER,   KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
   ),
 
     /*
     ┌─────┬─────┬─────┬─────┬─────┐              ┌─────┬─────┬─────┬─────┬─────┐
-    │ESC  │ctl-Z│ctl-W│TRM_P│MEH-a│              │MEH-b│HOME │  ↑  │END  │PG-↑ │
+    │ESC  │ctl-Z│ctl-W│TRM_P│     │              │MEH-b│HOME │  ↑  │END  │PG-↑ │
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │TRM_V│ctl-R│ctl-S│TAB  │ctl-N│              │ctl ←│  ←  │  ↓  │  →  │ctl →│
+    │ctl-A│ctl-R│ctl-S│TAB  │ctl-N│              │ctl ←│  ←  │  ↓  │  →  │ctl →│
     ├─────┼─────┼─────┼─────┼─────┤              ├─────┼─────┼─────┼─────┼─────┤
-    │ ?   │ ?   │ ?   │ ?   │ ?   ├────┐    ┌────┤_____│ctl-C│ctl-X│ctl-V│PG-↓ │
+    │ ?   │ ?   │ ?   │TRM_V│ ?   ├────┐    ┌────┤_____│ctl-C│ctl-X│ctl-V│PG-↓ │
     ├─────┼─────┼─────┼─────┼─────┤    │    │    ├─────┼─────┼─────┼─────┼─────┤
     │i3kil│ ?   │_____│_____│_____│TRNS│    │ENT │SPACE│B-SPC│c-B-S│DEL  │c-del│
     └─────┴─────┴─────┴─────┴─────┴────┘    └────┴─────┴─────┴─────┴─────┴─────┘
@@ -172,11 +172,17 @@ void matrix_scan_user(void) {
   LEADER_DICTIONARY() {
     leading = false;
     leader_end();
-
+   //txt    
     SEQ_ONE_KEY(KC_F) {
-      // Anything you can do in a macro.
       SEND_STRING("QMK is awesome.");
     }
+   SEQ_ONE_KEY(KC_SCLN) {
+      SEND_STRING(": >");
+    }
+   //backets
+   // others things can add:
+   //   - [a] {a} "a" completes
+   //   - my_var => "my_var
     SEQ_ONE_KEY(KC_B) {
       SEND_STRING("[]");
       tap_code(KC_LEFT);
@@ -185,13 +191,34 @@ void matrix_scan_user(void) {
       SEND_STRING("{}");
       tap_code(KC_LEFT);
     }
-   SEQ_ONE_KEY(KC_SCLN) { // Anything you can do in a macro.
-      SEND_STRING(": >");
+    
+    //bash sciprts 
+    SEQ_TWO_KEYS(KC_B, KC_S) {
+      SEND_STRING("#!/bin/bash");
+      tap_code(KC_ENTER);
     }
+    SEQ_TWO_KEYS(KC_B, KC_V) {
+      SEND_STRING("\"${}\"");
+      tap_code(KC_LEFT);
+      tap_code(KC_LEFT);
+    }
+    SEQ_TWO_KEYS(KC_B, KC_F) {
+      SEND_STRING("(){\n}");
+      tap_code(KC_UP);
+      tap_code(KC_LEFT);
+      tap_code(KC_LEFT);
+    }
+    //shell
     SEQ_ONE_KEY(KC_H) {
-      //SEND_STRING(SS_LCTRL("n")SS_LCTRL("c"));
-      SEND_STRING("~/");
+      SEND_STRING(" ~/");
     }
+    SEQ_TWO_KEYS(KC_S, KC_P) {
+      SEND_STRING(" | ");
+    }
+    SEQ_TWO_KEYS(KC_S, KC_A) {
+      SEND_STRING(" && ");
+    }
+    //misc
     SEQ_ONE_KEY(KC_S) {
       SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER));
     }
