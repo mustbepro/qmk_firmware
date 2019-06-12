@@ -60,8 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT(
     KC_Q,          KC_F,          KC_W,       KC_P,                KC_G,                                 KC_J,       KC_L,      KC_U,    KC_Y,          KC_SCLN,
     KC_A,          KC_R,          KC_S,       KC_T,                KC_D,                                 KC_H,       KC_N,      KC_E,    KC_I,          KC_O,
-    KC_Z,    	   KC_X,          KC_C,       KC_V,                KC_B,                                 KC_K,       KC_M,      KC_COMMA,KC_DOT,        KC_SLASH,
-    OSM(MOD_LSFT), OSM(MOD_LCTL), MO(KEYSEL), MO(BROWSER_CONTROL), MO(COMBINED), MO(KEYNAV), ALTENT,   KC_SPACE,  KC_BSPC, KC_LEAD, KC_CAPS, OSM(MOD_LSFT)
+    KC_Z,    	     KC_X,          KC_C,       KC_V,                KC_B,                                 KC_K,       KC_M,      KC_COMMA,KC_DOT,        KC_SLASH,
+    KC_ENTER,      KC_BSPC,       MO(KEYSEL), KC_LALT,                KC_SPACE, MO(KEYNAV), ALTENT,         MO(COMBINED), KC_BSPC, KC_LEAD, KC_LCTRL,          KC_LSFT
   ),
 
     /*
@@ -97,10 +97,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
 
   [COMBINED] = LAYOUT(
-    KC_EXLM, KC_AT,   KC_HASH,     KC_DLR,      KC_PERC,                   KC_PLUS,  KC_7, KC_8,   KC_9,    KC_ASTR,
-    KC_LPRN, KC_RPRN, KC_LBRACKET, KC_RBRACKET, KC_UNDS,                   KC_MINS,  KC_4, KC_5,   KC_6,    KC_SLSH,
-    KC_COLN, KC_DQUO, KC_LCBR,     KC_RCBR,     KC_AMPR,                   KC_EQUAL, KC_1, KC_2,   KC_3,    KC_QUES,
-    _______, KC_TILD, KC_GRAVE,    KC_CIRC,     _______, _______, _______, _______,  KC_0, KC_DOT, KC_PIPE, KC_BSLS
+    KC_PLUS,  KC_7, KC_8,   KC_9,    KC_ASTR,                  KC_EXLM, KC_AT,   KC_HASH,     KC_DLR,      KC_PERC, 
+    KC_MINS,  KC_4, KC_5,   KC_6,    KC_SLSH,                  KC_LPRN, KC_RPRN, KC_LBRACKET, KC_RBRACKET, KC_UNDS, 
+    KC_EQUAL, KC_1, KC_2,   KC_3,    KC_QUES,                  KC_COLN, KC_DQUO, KC_LCBR,     KC_RCBR,     KC_AMPR, 
+    _______,  KC_0, KC_DOT, KC_PIPE, KC_BSLS,  _______, _______,_______, KC_TILD, KC_GRAVE,    KC_CIRC,     _______
   ),
 
     /*
@@ -221,6 +221,9 @@ void matrix_scan_user(void) {
       SEND_STRING(" && ");
     }
     //misc
+     SEQ_THREE_KEYS(KC_S, KC_S, KC_L) {
+      SEND_STRING("https://");
+    }
     SEQ_ONE_KEY(KC_S) {
       SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER));
     }
