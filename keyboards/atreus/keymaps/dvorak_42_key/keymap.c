@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,          KC_F,          KC_W,       KC_P,                KC_G,                                 KC_J,       KC_L,      KC_U,    KC_Y,          KC_SCLN,
     KC_A,          KC_R,          KC_S,       KC_T,                KC_D,                                 KC_H,       KC_N,      KC_E,    KC_I,          KC_O,
     KC_Z,    	     KC_X,          KC_C,       KC_V,                KC_B,                                 KC_K,       KC_M,      KC_COMMA,KC_DOT,        KC_SLASH,
-    KC_ENTER,      KC_BSPC,       MO(KEYSEL), KC_LALT,                KC_SPACE, MO(KEYNAV), ALTENT,         MO(COMBINED), KC_BSPC, KC_LEAD, KC_LCTRL,          KC_LSFT
+    KC_LSFT,       KC_LCTRL,      MO(KEYSEL), KC_LALT,             KC_SPACE, MO(KEYNAV), ALTENT,         MO(COMBINED), KC_BSPC, KC_LEAD, KC_ENTER,      KC_BSPC
   ),
 
     /*
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [KEYNAV] = LAYOUT(
     KC_ESC,       RCTL(KC_Z),            RCTL(KC_W),      TRM_PST,   _______,                              MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
     LCTL(KC_A),   RCTL(KC_R),            RCTL(KC_S),      KC_TAB,    RCTL(KC_N),                           LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT), 
-    KC_ESC,       AS_CLASS,              AS_TABLEFT,      TRM_VSL,   AS_CLOSETAB,                          _______,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
+    KC_ESC,       AS_CLASS,              AS_TABLEFT,      TRM_VSL,   AS_CLOSETAB,                          KC_CAPS,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
     I3_KILL,      AS_GO_DECLARATION,     _______,         _______,   _______,         _______, KC_ENTER,   KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
   ),
 
@@ -99,8 +99,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [COMBINED] = LAYOUT(
     KC_PLUS,  KC_7, KC_8,   KC_9,    KC_ASTR,                  KC_EXLM, KC_AT,   KC_HASH,     KC_DLR,      KC_PERC, 
     KC_MINS,  KC_4, KC_5,   KC_6,    KC_SLSH,                  KC_LPRN, KC_RPRN, KC_LBRACKET, KC_RBRACKET, KC_UNDS, 
-    KC_EQUAL, KC_1, KC_2,   KC_3,    KC_QUES,                  KC_COLN, KC_DQUO, KC_LCBR,     KC_RCBR,     KC_AMPR, 
-    _______,  KC_0, KC_DOT, KC_PIPE, KC_BSLS,  _______, _______,_______, KC_TILD, KC_GRAVE,    KC_CIRC,     _______
+    KC_EQUAL, KC_1, KC_2,   KC_3,    KC_QUES,                  KC_PIPE, KC_QUOTE, KC_LCBR,     KC_RCBR,     KC_AMPR, 
+    KC_LSFT,  KC_0, KC_DOT, KC_LALT, KC_BSLS,  _______, _______,_______, KC_TILD, KC_GRAVE,    KC_CIRC,     _______
   ),
 
     /*
