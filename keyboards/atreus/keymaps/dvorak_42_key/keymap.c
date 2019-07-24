@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,          KC_F,          KC_W,       KC_P,                KC_G,                                 KC_J,       KC_L,      KC_U,    KC_Y,          KC_SCLN,
     KC_A,          KC_R,          KC_S,       KC_T,                KC_D,                                 KC_H,       KC_N,      KC_E,    KC_I,          KC_O,
     KC_Z,    	     KC_X,          KC_C,       KC_V,                KC_B,                                 KC_K,       KC_M,      KC_COMMA,KC_DOT,        KC_SLASH,
-    KC_LCTRL,      KC_BSPC,       MO(KEYSEL), KC_LALT,             KC_SPACE,   MO(KEYNAV), KC_LSFT,      MO(COMBINED), _______, KC_LEAD, KC_ENTER,      KC_BSPC
+    KC_LCTRL,      KC_BSPC,       MO(KEYSEL), KC_LALT,             KC_SPACE,   MO(KEYNAV), KC_LSFT,      MO(COMBINED), _______, KC_LEAD, KC_ENTER,      KC_RCTRL
   ),
 
     /*
@@ -78,8 +78,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   [KEYNAV] = LAYOUT(
-    KC_ESC,       RCTL(KC_Z),   RCTL(KC_W),      TRM_PST,   _______,                              MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
-    LCTL(KC_A),   RCTL(KC_R),   RCTL(KC_S),      KC_TAB,    RCTL(KC_N),                           LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT), 
+    KC_ESC,       _______,      KC_F5,         TRM_PST,   KC_DEL,                              MEH(KC_B),     KC_HOME,    KC_UP,           KC_END,     KC_PGUP,
+    _______,      _______,      _______,         KC_TAB,    _______,                              LCTL(KC_LEFT), KC_LEFT,    KC_DOWN,         KC_RIGHT,   LCTL(KC_RIGHT), 
     KC_ESC,       _______,      _______,         TRM_VSL,   _______,                              KC_CAPS,       RCTL(KC_C), RCTL(KC_X),      RCTL(KC_V), KC_PGDOWN,
     I3_KILL,      _______,      _______,         _______,   _______,         _______, KC_ENTER,   KC_SPACE,      KC_BSPC,    RCTL(KC_BSPC),   KC_DELETE,  LCTL(KC_DELETE)
   ),
